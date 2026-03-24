@@ -1,0 +1,30 @@
+/* Created by Looty9397 */
+
+body {
+    font-family: Consolas, "Courier New", monospace;
+}
+
+.field {
+    font-weight: bold;
+}
+
+#input, input {
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    width: fit-content;
+}
+
+.btn {
+    border-style: none;
+    background-color: white;
+    font-family: inherit;
+}
+
+.btn:hover {
+    background-color: #f0f0f0;
+}
+
+th {
+    width: 100px;
+}

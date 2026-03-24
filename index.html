@@ -1,0 +1,53 @@
+<!DOCTYPE html> <!-- Created by Looty9397 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midterm Coding</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Amortization Calculator</h1>
+    <p style="color: white; margin: 0;">Naphtali Rutzky - nrutzky@my.waketech.edu - 03/24/2026</p>
+    <div id="input">
+        <table> <!-- Input Fields -->
+            <tr>
+                <td class="field">Initial Loan Amount</td>
+                <td><input type="number" id="amount"></td>
+            </tr><tr>
+                <td class="field">Down Payment</td>
+                <td><input type="number" id="payment"></td>
+            </tr><tr>
+                <td class="field">Loan Term (Years)</td>
+                <td><input type="number" id="term"></td>
+            </tr><tr>
+                <td></td><td>
+                    <button id="calc" class="btn">Calculate Amortization</button>
+                </td>
+            </tr>
+        </table>
+    </div><br/>
+    <div id="output">
+        <table id="simpleOut" style="display: none;"> <!-- Simple Outputs -->
+            <tr>
+                <td class="field">Loan Term</td>
+                <td id="outTerm"></td>
+            </tr><tr>
+                <td class="field">Annual Interest Rate</td>
+                <td id="outRate"></td>
+            </tr><tr>
+                <td class="field">Loan Amount (after Down Payment)</td>
+                <td id="outPrincipal"></td>
+            </tr><tr>
+                <td class="field">Total Interest Paid</td>
+                <td id="outInterest"></td>
+            </tr><tr>
+                <td class="field">Total Loan Cost</td>
+                <td id="outCost"></td>
+            </tr>
+        </table>
+        <table id="schedule"></table> <!-- Amortization Schedule -->
+    </div>
+</body>
+</html>
