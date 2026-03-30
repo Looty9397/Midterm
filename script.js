@@ -7,21 +7,21 @@ const inputs = {
     "term": document.getElementById("term")
 }
 
-            function makeCell (value, type) {
-                let cell = document.createElement(type);
-                console.log(value, type)
-                cell.innerHTML = value;
-                return cell;
-            }
-
+function makeCell (value, type) {
+    let cell = document.createElement(type);
+    console.log(value, type)
+    cell.innerHTML = value;
+    return cell;
+}
 
 document.getElementById("calc").addEventListener("click", function () {
     if (inputs.term.value % 15 === 0) {
         var principalAmount = inputs.amount.value - inputs.payment.value;
         var rate = 0.0575;
-        var monthlyPayment = (((rate / 12) * principalAmount) / (1 - Math.pow(1 + (rate / 12), inputs.term.value * 12))).toFixed(2);
-        var totalCost = (monthlyPayment * inputs.term.value * 12) - principalAmount; // Somehow the values
-        var totalInterest = principalAmount + totalCost; // of these got swapped so the names are now swapped too
+        var monthlyInterest = rate / 12
+        var monthlyPayment = ((monthlyInterest * principalAmount) / (1 - Math.pow(1 + monthlyInterest, -inputs.term.value * 12))).toFixed(2);
+        var totalInterest = (monthlyPayment * inputs.term.value * 12) - principalAmount;
+        var totalCost = principalAmount + totalCost;
 
         var remainingAmount = Number(principalAmount);
         const schedule = document.getElementById("schedule");
@@ -30,9 +30,9 @@ document.getElementById("calc").addEventListener("click", function () {
             let row = document.createElement("tr");
             if (i > 0) {
                 row.appendChild(makeCell(i, "td"));
-                row.appendChild(makeCell("$" + Number(-monthlyPayment).toFixed(2), "td"));
-                let interestPaid = remainingAmount * (rate / 12);
-                let principalPaid = -(monthlyPayment - interestPaid);
+                row.appendChild(makeCell("$" + Number(monthlyPayment).toFixed(2), "td"));
+                let interestPaid = remainingAmount * monthlyInterest;
+                let principalPaid = (monthlyPayment - interestPaid);
                 remainingAmount -= principalPaid;
                 row.appendChild(makeCell("$" + Number(interestPaid).toFixed(2), "td"));
                 row.appendChild(makeCell("$" + Number(principalPaid).toFixed(2), "td"));
@@ -50,7 +50,7 @@ document.getElementById("calc").addEventListener("click", function () {
         document.getElementById("outTerm").innerHTML = inputs.term.value + " Years";
         document.getElementById("outRate").innerHTML = "5.75%"
         document.getElementById("outPrincipal").innerHTML = "$" + principalAmount;
-        document.getElementById("outInterest").innerHTML = "$" + -totalInterest.toFixed(2);
+        document.getElementById("outInterest").innerHTML = "$" + totalInterest.toFixed(2);
         document.getElementById("outCost").innerHTML = "$" + -totalCost.toFixed(2);
 
         document.getElementById("simpleOut").style.display = "table";
@@ -58,4 +58,5 @@ document.getElementById("calc").addEventListener("click", function () {
     } else {
         document.body.appendChild(makeCell("Invalid Term", "p"))
     }
+    console.log(monthlyPayment);
 })
